@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回顧Object.defineproperty方法</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let number = 18
+        let person = {
+            name:'張三',
+            sex:'男',
+        }
+
+        // 第一個參數：給哪個對象添加屬性？
+        // 第二個參數：添加的屬性叫什麼名字？
+        // 第三個參數：配置項目有哪些？(最重要)
+        Object.defineProperty(person , 'age' , {
+            // value:18,
+            // enumerable:true, //控制屬性是否可以枚舉，默認值是false
+            // writable:true, //控制屬性是否可以被修改，默認值是false
+            // configurable:true, //控制屬性是否可以被刪除，默認值是false
+
+
+            //當有人讀取person的age屬性時，get函數(getter)就會被調用，且返回值就是age的值
+            //可以簡寫成 get(){.....}
+            get:function(){
+                console.log('有人讀取age屬性了!');
+                return number
+            },
+
+             //當有人修改person的age屬性時，set函數(setter)就會被調用，且會收到修改的具體值
+             set(value){
+                console.log('有人修改age的屬性了，且值是'  , value);
+                number = value 
+
+             }
+
+            
+        })
+         
+        //類似列印陣列出來
+        // console.log(Object.keys(person)); 
+        
+        console.log(person);
+    
+    </script>
+</body>
+</html>

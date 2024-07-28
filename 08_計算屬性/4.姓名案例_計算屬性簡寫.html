@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>姓名案例_计算属性实现</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="../js/vue.js"></script>
+	</head>
+	<body>
+		<!-- 准备好一个容器-->
+		<div id="root">
+			姓：<input type="text" v-model="firstName"> <br/><br/>
+			名：<input type="text" v-model="lastName"> <br/><br/>
+			全名：<span>{{fullName}}</span> <br/><br/>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+				firstName:'张',
+				lastName:'三',
+			},
+			computed:{
+				//完整写法
+				/* fullName:{
+					get(){
+						console.log('get被调用了')
+						return this.firstName + '-' + this.lastName
+					},
+					set(value){
+						console.log('set',value)
+						const arr = value.split('-')
+						this.firstName = arr[0]
+						this.lastName = arr[1]
+					}
+				} */
+				//简写
+				//如果只考慮讀取不改的話，才可以用簡寫方式，不然要讀要改就要用完整寫法。
+
+				//第一版
+				// fullName:{
+				// 	get(){
+				// 		console.log('get被调用了')
+				// 		return this.firstName + '-' + this.lastName
+				// 	},
+
+				//第二版(跟get方法合體)
+				// fullName:function(){
+				// 		console.log('get被调用了')
+				// 		return this.firstName + '-' + this.lastName
+
+				//第三版
+				fullName(){
+					console.log('get被调用了')
+					return this.firstName + '-' + this.lastName
+				}
+			}
+		})
+	</script>
+</html>
