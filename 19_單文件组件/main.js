@@ -1,7 +1,8 @@
-import App from './App.vue'
+import App from "./App.vue";
 
 new Vue({
-	el:'#root',
-	template:`<App></App>`,
-	components:{App},
-})
+  // 準備在index.html裡
+  el: "#root",
+  template: `<App></App>`,
+  components: { App },
+});

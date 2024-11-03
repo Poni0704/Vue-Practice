@@ -10,6 +10,7 @@
 <script>
 //組件交互相關的代碼(數據、方法等等)
 export default {
+  //組件名稱，建議跟這個組件名稱的名字一樣
   name: "School",
   data() {
     return {
