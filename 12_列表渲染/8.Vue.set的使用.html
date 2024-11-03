@@ -9,16 +9,16 @@
 	<body>
 		<!-- 准备好一个容器-->
 		<div id="root">
-			<h1>学校信息</h1>
-			<h2>学校名称：{{school.name}}</h2>
-			<h2>学校地址：{{school.address}}</h2>
-			<h2>校长是：{{school.leader}}</h2>
+			<h1>學校信息</h1>
+			<h2>學校名稱：{{school.name}}</h2>
+			<h2>學校地址：{{school.address}}</h2>
+			<h2>校長是：{{school.leader}}</h2>
 			<hr/>
-			<h1>学生信息</h1>
-			<button @click="addSex">添加一个性别属性，默认值是男</button>
+			<h1>學生訊息</h1>
+			<button @click="addSex">添加一個性別屬性，默認值是男生</button>
 			<h2>姓名：{{student.name}}</h2>
-			<h2 v-if="student.sex">性别：{{student.sex}}</h2>
-			<h2>年龄：真实{{student.age.rAge}}，对外{{student.age.sAge}}</h2>
+			<h2 v-if="student.sex">性別：{{student.sex}}</h2>
+			<h2>年齡：真實{{student.age.rAge}}，對外{{student.age.sAge}}</h2>
 			<h2>朋友们</h2>
 			<ul>
 				<li v-for="(f,index) in student.friends" :key="index">
@@ -52,6 +52,9 @@
 			},
 			methods: {
 				addSex(){
+					// 第一個參數：你要往誰的身上追加一個屬性?
+					// 第二個參數：往這個身上要追加什麼屬性?
+					// 第三個參數：這個屬性的值是什麼?
 					// Vue.set(this.student,'sex','男')
 					this.$set(this.student,'sex','男')
 				}

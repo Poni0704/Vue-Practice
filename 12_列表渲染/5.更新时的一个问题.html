@@ -7,15 +7,43 @@
   </head>
   <body>
     <!-- 准备好一个容器-->
-    <div id="root"></div>
+    <div id="root">
+      <h2>人員列表</h2>
+      <button @click="updateMei">更新馬冬梅個人訊息</button>
+      <ul>
+        <li v-for="(p,index) of persons" :key="index">
+          {{p.name}}-{{p.age}}-{{p.sex}}
+        </li>
+      </ul>
+    </div>
   </body>
   <script type="text/javascript">
     Vue.config.productionTip = false;
 
-    const vm = new Vue({
+    new Vue({
       el: "#root",
-      data: {},
-      methods: {},
+      data: {
+        persons: [
+          { id: "001", name: "馬冬梅", age: "33", sex: "女" },
+          { id: "002", name: "周冬雨", age: "19", sex: "女" },
+          { id: "003", name: "周杰倫", age: "47", sex: "男" },
+          { id: "004", name: "溫兆倫", age: "21", sex: "男" },
+        ],
+      },
+      methods: {
+        updateMei() {
+          // this.persons[0].name='嗨嗨嗨'  有效
+          // this.persons[0].age='90'       有效
+          // this.persons[0].sex='男'       有效
+          //this.persons[0] = { id: "001", name: "嗨嗨嗨", age: "90", sex: "男" } //不奏效
+          this.persons.splice(0, 1, {
+            id: "001",
+            name: "嗨嗨嗨",
+            age: "90",
+            sex: "男",
+          });
+        },
+      },
     });
   </script>
 </html>

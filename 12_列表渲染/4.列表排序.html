@@ -7,15 +7,55 @@
   </head>
   <body>
     <!-- 准备好一个容器-->
-    <div id="root"></div>
+    <div id="root">
+      <h2>人員列表</h2>
+      <input type="text" placeholder="請輸入名字" v-model="keyWord" />
+      <button @click="sortType=2">年齡小到大</button>
+      <button @click="sortType=1">年齡大到小</button>
+      <button @click="sortType=0">原來順序</button>
+      <ul>
+        <li v-for="(p,index) of filterPersons" :key="index">
+          {{p.name}}-{{p.age}}-{{p.sex}}
+        </li>
+      </ul>
+    </div>
   </body>
   <script type="text/javascript">
     Vue.config.productionTip = false;
 
     new Vue({
       el: "#root",
-      data: {},
-      computed: {},
+      data: {
+        keyWord: "",
+        // 0=原順序，1=大到小，2=小到大
+        sortType: 0,
+        persons: [
+          { id: "001", name: "馬冬梅", age: "33", sex: "女" },
+          { id: "002", name: "周冬雨", age: "19", sex: "女" },
+          { id: "003", name: "周杰倫", age: "47", sex: "男" },
+          { id: "004", name: "溫兆倫", age: "21", sex: "男" },
+        ],
+      },
+      computed: {
+        filterPersons() {
+          const arr = this.persons.filter((p) => {
+            return p.name.indexOf(this.keyWord) !== -1;
+          });
+
+          // 判斷是否需要排序
+          if (this.sortType) {
+            arr.sort((front, back) => {
+              // 如果是大到小，sortType=1，就是後 - 前
+              // 如果是小到大，sortType=2，就是前 - 後
+              // 用三元表達式進行撰寫
+              return this.sortType === 1
+                ? back.age - front.age
+                : front.age - back.age;
+            });
+          }
+          return arr;
+        },
+      },
     });
   </script>
 </html>
